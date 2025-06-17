@@ -86,7 +86,7 @@ def get_crime_prediction():
     daily_data = generate_daily_data(date,time,location,crime_type) 
     if error:
         return jsonify({"success": False, "message": error}), 400
-    print(prediction)
+    # print(prediction)
     crimePred = {'crime': crime_type, 'location': location, 'date': date, 'time': time, 'prediction': float(prediction[0]), 'daily':daily_data}
     return render_template('result.html', crime_pred=json.dumps(crimePred))
 
@@ -98,7 +98,7 @@ def generate_daily_data(start_date,time, location, crime_type):
     current_date = datetime.strptime(start_date, '%Y-%m-%d')
     daily_data = []
 
-    for i in range(7, 0, -1):
+    for i in range(1, 0, -1):
         date = (current_date - timedelta(days=i)).strftime('%Y-%m-%d')
         crime_rate, _ = predict_crime(date, time, location, crime_type)
         daily_data.append({
