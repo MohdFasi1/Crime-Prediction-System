@@ -98,7 +98,7 @@ def generate_daily_data(start_date,time, location, crime_type):
     current_date = datetime.strptime(start_date, '%Y-%m-%d')
     daily_data = []
 
-    for i in range(30, 0, -1):
+    for i in range(7, 0, -1):
         date = (current_date - timedelta(days=i)).strftime('%Y-%m-%d')
         crime_rate, _ = predict_crime(date, time, location, crime_type)
         daily_data.append({
